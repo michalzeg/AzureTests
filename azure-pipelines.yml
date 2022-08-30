@@ -41,8 +41,9 @@ steps:
     command: 'publish'
     publishWebProjects: true
     arguments: '-c Release --output $(Build.ArtifactStagingDirectory)'
-- task: PublishPipelineArtifact@1
+
+- task: PublishBuildArtifacts@1
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)'
-    artifact: 'pipeline'
-    publishLocation: 'pipeline'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
