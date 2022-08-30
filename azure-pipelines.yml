@@ -25,24 +25,15 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
     
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     publishWebProjects: true
     arguments: '-c Release --output $(Build.ArtifactStagingDirectory)'
-- task: PublishPipelineArtifact@1
+
+- task: PublishBuildArtifacts@1
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)'
-    artifact: 'pipeline'
-    publishLocation: 'pipeline'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
