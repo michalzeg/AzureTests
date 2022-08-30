@@ -1,9 +1,17 @@
+using AzureTest.Database;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("MySql");
+
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddApplicationInsightsTelemetry();
+builder.Services.AddDbContext<TestContext>(opt=>opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)).LogTo(Console.WriteLine));
+
 
 var app = builder.Build();
 
@@ -24,5 +32,14 @@ app.MapControllerRoute(
     pattern: "{controller}/{action=Index}/{id?}");
 
 app.MapFallbackToFile("index.html"); ;
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    var context = services.GetRequiredService<TestContext>();
+    //context.Database.EnsureCreated();
+    context.Database.Migrate();
+}
 
 app.Run();

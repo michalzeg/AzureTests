@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AzureTest.Database;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace AzureTest.Controllers
 {
@@ -13,11 +16,13 @@ namespace AzureTest.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IConfiguration _configuration;
+        private readonly TestContext _testContext;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IConfiguration configuration)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IConfiguration configuration, TestContext testContext)
         {
             _logger = logger;
             _configuration = configuration;
+            _testContext = testContext;
         }
 
         [HttpGet]
@@ -25,13 +30,16 @@ namespace AzureTest.Controllers
         {
             var value = _configuration["SomeData:Value"];
 
-            await Task.Delay(Random.Shared.Next(50, 10000));
+            await _testContext.AddAsync(new Test() { Type = "Webapp", Date = DateTime.Now });
+            await _testContext.SaveChangesAsync();
+            var dbValues = await _testContext.Tests.Take(10).ToListAsync();
+            await Task.Delay(Random.Shared.Next(50, 5000));
 
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]+" " + value
+                Summary = Summaries[Random.Shared.Next(Summaries.Length)] + " " + value + JsonConvert.SerializeObject(dbValues)
             })
             .ToArray();
         }
