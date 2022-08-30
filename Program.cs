@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 var azureConnectionString = Environment.GetEnvironmentVariable("AZURE_MYSQL_CONNECTIONSTRING");
 var connectionString = string.IsNullOrEmpty(azureConnectionString) 
-    ? builder.Configuration.GetConnectionString("MySql")
+    ? builder.Configuration.GetConnectionString("AZURE_MYSQL_CONNECTIONSTRING")
     : azureConnectionString;
 
 
