@@ -5,7 +5,10 @@ using Microsoft.EntityFrameworkCore.Design;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("MySql");
+var azureConnectionString = Environment.GetEnvironmentVariable("AZURE_MYSQL_CONNECTIONSTRING");
+var connectionString = string.IsNullOrEmpty(azureConnectionString) 
+    ? builder.Configuration.GetConnectionString("MySql")
+    : azureConnectionString;
 
 
 builder.Services.AddControllersWithViews();
