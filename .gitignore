@@ -231,3 +231,4 @@ _Pvt_Extensions
 .fake/
 /ClientApp/.angular
 /docker-compose.yml.bak
+/output
