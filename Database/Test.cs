@@ -6,8 +6,8 @@
 
         public int Value { get; set; }
 
-        public DateTime Date { get; set; }
-        public string Type { get; set; }
+        public DateTime LastUpdate { get; set; }
+        public string? Type { get; set; }
 
     }
 }

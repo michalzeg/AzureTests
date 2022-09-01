@@ -28,18 +28,18 @@ namespace AzureTest.Controllers
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
-            var value = _configuration["SomeData:Value"];
+            var configValue = _configuration["SomeData:Value"];
 
-            await _testContext.AddAsync(new Test() { Type = "Webapp", Date = DateTime.Now });
+            await _testContext.AddAsync(new Test() { Type = "Webapp", LastUpdate = DateTime.Now });
             await _testContext.SaveChangesAsync();
-            var dbValues = await _testContext.Tests.Take(10).ToListAsync();
+            var dbValue = await _testContext.Tests.OrderByDescending(e=>e.Id).FirstOrDefaultAsync();
             await Task.Delay(Random.Shared.Next(50, 5000));
 
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)] + " " + value + JsonConvert.SerializeObject(dbValues)
+                Summary = $"{Summaries[Random.Shared.Next(Summaries.Length)]} ConfigValue {configValue}Last Update {dbValue?.LastUpdate}"
             })
             .ToArray();
         }
