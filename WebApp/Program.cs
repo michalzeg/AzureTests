@@ -1,6 +1,6 @@
-using AzureTest.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using WebApp.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 

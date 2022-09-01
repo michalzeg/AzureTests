@@ -1,4 +1,4 @@
-﻿namespace AzureTest.Database
+﻿namespace WebApp.Database
 {
     public class Test
     {

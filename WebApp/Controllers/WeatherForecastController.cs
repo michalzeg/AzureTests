@@ -1,9 +1,10 @@
-﻿using AzureTest.Database;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using WebApp;
+using WebApp.Database;
 
-namespace AzureTest.Controllers
+namespace WebApp.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -29,7 +30,7 @@ namespace AzureTest.Controllers
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
             var configValue = _configuration["SomeData:Value"];
-            var dbValue = await _testContext.Tests.OrderByDescending(e=>e.Id).FirstOrDefaultAsync();
+            var dbValue = await _testContext.Tests.OrderByDescending(e => e.Id).FirstOrDefaultAsync();
             await Task.Delay(Random.Shared.Next(50, 5000));
 
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast

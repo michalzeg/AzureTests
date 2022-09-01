@@ -1,4 +1,4 @@
-namespace AzureTest
+namespace WebApp
 {
     public class WeatherForecast
     {
