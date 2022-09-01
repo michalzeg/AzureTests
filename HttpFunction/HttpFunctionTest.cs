@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace HttpFunction
 {
-    public static class Function
+    public static class HttpFunctionTest
     {
         [FunctionName("Function")]
         public static async Task<IActionResult> Run(
