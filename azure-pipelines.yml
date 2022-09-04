@@ -34,22 +34,16 @@ stages:
     - task: DotNetCoreCLI@2
       displayName: Build
       inputs:
-        command: 'build'
-        projects: |
-          $(workingDirectory)/*.csproj
-        arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration Development
-
-    - task: ArchiveFiles@2
-      displayName: 'Archive files'
+        command: 'publish'
+        publishWebProjects: true
+        arguments: '--output $(System.DefaultWorkingDirectory)/publish_output --configuration Development'
+    
+    - task: PublishPipelineArtifact@1
       inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/publish_output'
-        includeRootFolder: false
-        archiveType: zip
-        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-        replaceExistingArchive: true
+        targetPath: '$(Build.ArtifactStagingDirectory)'
+        publishLocation: 'pipeline'
 
-    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-      artifact: drop
+    
 
 - stage: Deploy
   displayName: Deploy stage
