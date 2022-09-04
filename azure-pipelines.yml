@@ -69,6 +69,6 @@ stages:
               azureSubscription: '$(azureSubscription)'
               appType: 'webApp'
               WebAppName: 'MchTestApp'
-              packageForLinux: '$(System.DefaultWorkingDirectory)/publish_output'
+              packageForLinux: '$(Pipeline.Workspace)/drop/*.zip'
               AppSettings: '-SOMEDATA__VALUE azureTEstValue'
               
