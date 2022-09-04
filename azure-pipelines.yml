@@ -37,11 +37,11 @@ stages:
         command: 'publish'
         publishWebProjects: true
         arguments: '--output $(System.DefaultWorkingDirectory)/publish_output --configuration Development'
-    
-    - task: PublishPipelineArtifact@1
+    - task: PublishBuildArtifacts@1
       inputs:
-        targetPath: '$(Build.ArtifactStagingDirectory)'
-        publishLocation: 'pipeline'
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
 
     
 
