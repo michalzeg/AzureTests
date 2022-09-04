@@ -38,14 +38,14 @@ stages:
       inputs:
         command: 'publish'
         publishWebProjects: true
-        arguments: '--output $(System.DefaultWorkingDirectory)/publish_output --configuration Development'
+        arguments: '--output $(System.DefaultWorkingDirectory)/publish_output --configuration Release'
         zipAfterPublish: false
         workingDirectory: '$(workingDirectory)'
     
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/publish_output'
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/publish_output/WebApp'
         includeRootFolder: false
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
