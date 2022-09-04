@@ -37,6 +37,7 @@ stages:
         command: 'publish'
         publishWebProjects: true
         arguments: '--output $(System.DefaultWorkingDirectory)/publish_output --configuration Development'
+        workingDirectory: '$(workingDirectory)'
     - task: PublishBuildArtifacts@1
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
