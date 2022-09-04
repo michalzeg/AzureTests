@@ -17,6 +17,8 @@ variables:
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/WebApp'
 
+  appName: 'WebApp'
+
   webAppName: 'MchTestApp'
 
 stages:
@@ -45,7 +47,7 @@ stages:
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/publish_output/WebApp'
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/publish_output/$(appName)'
         includeRootFolder: false
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
@@ -88,6 +90,6 @@ stages:
               azureSubscription: '$(azureSubscription)'
               appType: 'webApp'
               WebAppName: '$(webAppName)'
-              packageForLinux: '$(Pipeline.Workspace)/drop/*.zip'
+              packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
               AppSettings: '-SOMEDATA__VALUE azureTEstValue'
               
