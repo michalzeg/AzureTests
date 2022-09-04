@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApp.Database;
+using Shared.Database;
 
 #nullable disable
 
 namespace AzureTest.Migrations
 {
     [DbContext(typeof(TestContext))]
-    [Migration("20220904165657_renamed-column")]
-    partial class renamedcolumn
+    [Migration("20220901170323_changed-column-name")]
+    partial class changedcolumnname
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace AzureTest.Migrations
                 .HasAnnotation("ProductVersion", "6.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("WebApp.Database.Test", b =>
+            modelBuilder.Entity("AzureTest.Database.Test", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,7 +30,7 @@ namespace AzureTest.Migrations
                     b.Property<DateTime>("LastUpdate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Type")
                         .HasColumnType("longtext");
 
                     b.Property<int>("Value")

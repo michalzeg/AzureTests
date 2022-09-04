@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Serilog;
-using WebApp.Database;
+using Shared.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 

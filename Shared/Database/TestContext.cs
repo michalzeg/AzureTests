@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
-namespace WebApp.Database
+namespace Shared.Database
 {
     public class TestContext : DbContext
     {
@@ -9,7 +11,7 @@ namespace WebApp.Database
 
         public DbSet<Test>? Tests { get; set; }
 
-         
+
 
         public TestContext(IConfiguration configuration, ILoggerFactory loggerFactory)
         {

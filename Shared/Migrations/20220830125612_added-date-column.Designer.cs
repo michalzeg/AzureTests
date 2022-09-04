@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApp.Database;
+using Shared.Database;
 
 #nullable disable
 
 namespace AzureTest.Migrations
 {
     [DbContext(typeof(TestContext))]
-    [Migration("20220901170323_changed-column-name")]
-    partial class changedcolumnname
+    [Migration("20220830125612_added-date-column")]
+    partial class addeddatecolumn
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,10 +27,11 @@ namespace AzureTest.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("LastUpdate")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Type")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("Value")

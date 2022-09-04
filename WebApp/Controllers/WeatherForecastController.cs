@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
+using Shared.Database;
 using WebApp;
-using WebApp.Database;
 
 namespace WebApp.Controllers
 {
@@ -23,14 +22,14 @@ namespace WebApp.Controllers
         {
             _logger = logger;
             _configuration = configuration;
-            _testContext = testContext;
+            _testContext = testContext ?? throw new ArgumentNullException(nameof(testContext));
         }
 
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
             var configValue = _configuration["SomeData:Value"];
-            var dbValue = await _testContext.Tests.OrderByDescending(e => e.Id).FirstOrDefaultAsync();
+            var dbValue = await _testContext.Tests!.OrderByDescending(e => e.Id).FirstOrDefaultAsync();
             await Task.Delay(Random.Shared.Next(50, 5000));
 
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
