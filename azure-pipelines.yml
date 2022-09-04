@@ -17,6 +17,8 @@ variables:
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/WebApp'
 
+  webAppName: 'MchTestApp'
+
 stages:
 - stage: Build
   displayName: Build stage
@@ -32,15 +34,25 @@ stages:
       inputs:
         versionSpec: '14.x'
     - task: DotNetCoreCLI@2
-      displayName: Build
+      displayName: Publish
       inputs:
         command: 'publish'
         publishWebProjects: true
         arguments: '--output $(System.DefaultWorkingDirectory)/publish_output --configuration Development'
+        zipAfterPublish: false
         workingDirectory: '$(workingDirectory)'
+    
+    - task: ArchiveFiles@2
+      displayName: 'Archive files'
+      inputs:
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/publish_output'
+        includeRootFolder: false
+        archiveType: zip
+        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+        replaceExistingArchive: true
     - task: PublishBuildArtifacts@1
       inputs:
-        PathtoPublish: '$(System.DefaultWorkingDirectory)/publish_output'
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
         ArtifactName: 'drop'
         publishLocation: 'Container'
 
@@ -68,7 +80,7 @@ stages:
               ConnectionType: 'AzureRM'
               azureSubscription: '$(azureSubscription)'
               appType: 'webApp'
-              WebAppName: 'MchTestApp'
-              packageForLinux: '$(Pipeline.Workspace)/drop/*.zip'
+              WebAppName: '$(webAppName)'
+              packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
               AppSettings: '-SOMEDATA__VALUE azureTEstValue'
               
