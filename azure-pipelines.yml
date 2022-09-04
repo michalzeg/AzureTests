@@ -71,7 +71,9 @@ stages:
           - task: AzureRmWebAppDeployment@4
             inputs:
               ConnectionType: 'AzureRM'
-              azureSubscription: $(azureSubscription)
+              azureSubscription: '$(azureSubscription)'
               appType: 'webApp'
               WebAppName: 'MchTestApp'
               packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+              AppSettings: '-SOMEDATA__VALUE azureTEstValue'
+              
