@@ -37,7 +37,7 @@ stages:
         command: 'build'
         projects: |
           $(workingDirectory)/*.csproj
-        arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration Release
+        arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration Development
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'
@@ -71,7 +71,9 @@ stages:
           - task: AzureRmWebAppDeployment@4
             inputs:
               ConnectionType: 'AzureRM'
-              azureSubscription: $(azureSubscription)
+              azureSubscription: '$(azureSubscription)'
               appType: 'webApp'
               WebAppName: 'MchTestApp'
-              packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+              packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+              AppSettings: '-SOMEDATA__VALUE azureTEstValue'
+              
