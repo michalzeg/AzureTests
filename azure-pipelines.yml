@@ -75,12 +75,19 @@ stages:
         deploy:
 
           steps:
+          - task: Bash@3
+            inputs:
+              targetType: 'inline'
+              script: |
+                # Write your commands here
+                
+                echo $(Build.BuildId)
           - task: AzureRmWebAppDeployment@4
             inputs:
               ConnectionType: 'AzureRM'
               azureSubscription: '$(azureSubscription)'
               appType: 'webApp'
               WebAppName: '$(webAppName)'
-              packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+              packageForLinux: '$(Pipeline.Workspace)/drop/*.zip'
               AppSettings: '-SOMEDATA__VALUE azureTEstValue'
               
