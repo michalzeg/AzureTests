@@ -11,17 +11,11 @@ builder.Host.UseSerilog((ctx, lc) => lc
     .WriteTo.AzureApp()
     );
 
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("AZURE_MYSQL_CONNECTIONSTRING");
 
 
-var v = ServerVersion.AutoDetect(connectionString);
 builder.Services.AddControllersWithViews();
 builder.Services.AddApplicationInsightsTelemetry();
-builder.Services.AddDbContext<TestContext>(opt =>
-{
-    opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-});
+builder.Services.AddDbContext<TestContext>();
 
 
 var app = builder.Build();
