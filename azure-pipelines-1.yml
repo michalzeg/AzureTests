@@ -8,7 +8,7 @@ trigger:
 
 variables:
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '1326091f-9010-4af4-8bdf-baed0e3c12f4'
+  azureSubscription: 'AzureDefault'
 
   # Function app name
   functionAppName: 'AzureTestFuncT1'
