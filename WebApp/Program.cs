@@ -1,17 +1,27 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Serilog;
 using WebApp.Database;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog((ctx, lc) => lc
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .WriteTo.AzureApp()
+    );
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("AZURE_MYSQL_CONNECTIONSTRING");
 
 
-
+var v = ServerVersion.AutoDetect(connectionString);
 builder.Services.AddControllersWithViews();
 builder.Services.AddApplicationInsightsTelemetry();
-builder.Services.AddDbContext<TestContext>(opt=>opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)).LogTo(Console.WriteLine));
+builder.Services.AddDbContext<TestContext>(opt =>
+{
+    opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+});
 
 
 var app = builder.Build();

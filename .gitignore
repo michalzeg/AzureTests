@@ -232,3 +232,4 @@ _Pvt_Extensions
 /ClientApp/.angular
 /docker-compose.yml.bak
 /output
+/WebApp/ClientApp/.angular

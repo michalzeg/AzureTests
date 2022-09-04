@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		azure-pipelines-webapp.yml = azure-pipelines-webapp.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{E37C8103-505D-4D16-9F81-D95E550D7CA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{54DD1983-EBC5-474F-8FC2-61BAC9A3A689}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54DD1983-EBC5-474F-8FC2-61BAC9A3A689}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54DD1983-EBC5-474F-8FC2-61BAC9A3A689}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E37C8103-505D-4D16-9F81-D95E550D7CA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E37C8103-505D-4D16-9F81-D95E550D7CA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E37C8103-505D-4D16-9F81-D95E550D7CA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E37C8103-505D-4D16-9F81-D95E550D7CA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
