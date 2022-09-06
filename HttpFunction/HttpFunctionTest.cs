@@ -7,13 +7,21 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Microsoft.Extensions.Configuration;
 
 namespace HttpFunction
 {
-    public static class HttpFunctionTest
+    public  class HttpFunctionTest
     {
+        private readonly IConfiguration _configuration;
+
+        public HttpFunctionTest(IConfiguration configuration )
+        {
+            _configuration = configuration;
+        }
+
         [FunctionName("Function")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
@@ -25,9 +33,11 @@ namespace HttpFunction
             dynamic data = JsonConvert.DeserializeObject(requestBody);
             name = name ?? data?.name;
 
+            var value = $"Fun:Value :{_configuration["Fun:Value"]}";
+
             string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
+                ? $"{value}  | This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
+                : $"{value} | Hello, {name}. This HTTP triggered function executed successfully.";
 
             return new OkObjectResult(responseMessage);
         }
