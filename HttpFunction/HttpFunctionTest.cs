@@ -8,16 +8,20 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using Shared.Database;
 
 namespace HttpFunction
 {
     public  class HttpFunctionTest
     {
         private readonly IConfiguration _configuration;
+        private readonly TestContext _dbContext;
 
-        public HttpFunctionTest(IConfiguration configuration )
+        public HttpFunctionTest(IConfiguration configuration , TestContext dbContext)
         {
             _configuration = configuration;
+            _dbContext = dbContext;
         }
 
         [FunctionName("Function")]
@@ -39,6 +43,9 @@ namespace HttpFunction
                 ? $"{value}  | This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
                 : $"{value} | Hello, {name}. This HTTP triggered function executed successfully.";
 
+
+            await _dbContext.Tests.AddAsync(new Test() { LastUpdate = DateTime.Now, Name = name });
+            await _dbContext.SaveChangesAsync();
             return new OkObjectResult(responseMessage);
         }
     }

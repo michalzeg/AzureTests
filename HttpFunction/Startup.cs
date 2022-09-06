@@ -3,6 +3,7 @@ using System.Xml.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
 using Microsoft.Extensions.Configuration;
+using Shared.Database;
 
 [assembly: FunctionsStartup(typeof(HttpFunction.Startup))]
 namespace HttpFunction
@@ -13,7 +14,7 @@ namespace HttpFunction
         public override void Configure(IFunctionsHostBuilder builder)
         {
             builder.Services.AddHttpClient();
-
+            builder.Services.AddDbContext<TestContext>();
             
 
         }

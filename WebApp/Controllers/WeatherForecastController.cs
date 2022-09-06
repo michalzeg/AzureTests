@@ -36,7 +36,7 @@ namespace WebApp.Controllers
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = $"{Summaries[Random.Shared.Next(Summaries.Length)]} ConfigValue {configValue} Last Update {dbValue?.LastUpdate}"
+                Summary = $"{Summaries[Random.Shared.Next(Summaries.Length)]} ConfigValue {configValue} Last Update {dbValue?.LastUpdate} Name: {dbValue?.Name}"
             })
             .ToArray();
         }
