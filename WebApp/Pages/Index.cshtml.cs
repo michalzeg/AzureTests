@@ -18,6 +18,9 @@ namespace WebApp.Pages
         {
             var someData = _configuration.GetValue<string>("SomeData:Value");
             ViewData["SomeData"] = someData;
+
+            var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            ViewData["Env"] = env;
         }
     }
 }

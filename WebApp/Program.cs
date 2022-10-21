@@ -4,9 +4,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 
-var baseConf = builder.Configuration;
-var azureConf = baseConf.GetConnectionString("AZURE_APP_CONFIGURATION");
-builder.Configuration.AddAzureAppConfiguration(azureConf);
+
+
+builder.Configuration.AddAzureAppConfiguration(conf =>
+{
+    var baseConf = builder.Configuration;
+    var azureConf = baseConf.GetConnectionString("AZURE_APP_CONFIGURATION");
+    conf.Connect(azureConf);
+    
+});
 
 
 var app = builder.Build();
