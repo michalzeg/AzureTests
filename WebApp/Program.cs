@@ -3,6 +3,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+
+var baseConf = builder.Configuration;
+var azureConf = baseConf.GetConnectionString("AZURE_APP_CONFIGURATION");
+builder.Configuration.AddAzureAppConfiguration(azureConf);
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

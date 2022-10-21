@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <AzureFunctionsVersion>v4</AzureFunctionsVersion>
+    <UserSecretsId>12ba48d9-75c2-49ea-8452-f45855c7e568</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="appsettings.Development.json" />
