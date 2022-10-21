@@ -26,8 +26,6 @@ variables:
   appName: 'WebApp'
 
   webAppName: 'MchTestApp'
-
-  ASPNETCORE_ENVIRONMENT: 'Production'
 stages:
 - stage: Build
   displayName: Build stage
@@ -78,7 +76,8 @@ stages:
     environment: 'development'
     pool:
       vmImage: $(vmImageName)
-
+    variables:
+      ASPNETCORE_ENVIRONMENT: 'Production'
     strategy:
       runOnce:
         deploy:
