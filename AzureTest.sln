@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{6C1E1422-5AA1-435C-9F38-22DDDF7D712A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpFunction", "HttpFunction\HttpFunction.csproj", "{54DD1983-EBC5-474F-8FC2-61BAC9A3A689}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{788A2229-1B16-4C2B-9CEB-76B82F76F174}"
@@ -13,7 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		azure-pipelines-webapp.yml = azure-pipelines-webapp.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{E37C8103-505D-4D16-9F81-D95E550D7CA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{E37C8103-505D-4D16-9F81-D95E550D7CA3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{FBD12CF5-3459-411E-83EE-E8597A79E73B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6C1E1422-5AA1-435C-9F38-22DDDF7D712A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C1E1422-5AA1-435C-9F38-22DDDF7D712A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6C1E1422-5AA1-435C-9F38-22DDDF7D712A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6C1E1422-5AA1-435C-9F38-22DDDF7D712A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{54DD1983-EBC5-474F-8FC2-61BAC9A3A689}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{54DD1983-EBC5-474F-8FC2-61BAC9A3A689}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54DD1983-EBC5-474F-8FC2-61BAC9A3A689}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{E37C8103-505D-4D16-9F81-D95E550D7CA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E37C8103-505D-4D16-9F81-D95E550D7CA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E37C8103-505D-4D16-9F81-D95E550D7CA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBD12CF5-3459-411E-83EE-E8597A79E73B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBD12CF5-3459-411E-83EE-E8597A79E73B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBD12CF5-3459-411E-83EE-E8597A79E73B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBD12CF5-3459-411E-83EE-E8597A79E73B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
