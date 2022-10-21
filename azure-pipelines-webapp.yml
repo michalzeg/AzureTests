@@ -27,6 +27,7 @@ variables:
 
   webAppName: 'MchTestApp'
 
+  ASPNETCORE_ENVIRONMENT: 'Production'
 stages:
 - stage: Build
   displayName: Build stage
