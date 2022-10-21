@@ -21,6 +21,9 @@ namespace WebApp.Pages
 
             var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             ViewData["Env"] = env;
+
+            var azureConf = _configuration.GetValue<string>("test");
+            ViewData["azureConf"] = azureConf;
         }
     }
 }

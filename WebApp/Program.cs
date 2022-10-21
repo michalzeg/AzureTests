@@ -8,9 +8,12 @@ builder.Services.AddRazorPages();
 
 builder.Configuration.AddAzureAppConfiguration(conf =>
 {
+
     var baseConf = builder.Configuration;
+    var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
     var azureConf = baseConf.GetConnectionString("AZURE_APP_CONFIGURATION");
     conf.Connect(azureConf);
+    conf.Select("test", env);
     
 });
 
