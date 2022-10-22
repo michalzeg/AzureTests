@@ -54,7 +54,7 @@ stages:
       displayName: ${{stage.displayName}}
       pool:
         vmImage: $(vmImageName)
-      - ${{each variable in stage.variables}}
+      - ${{each variable in stage.variables}}:
         steps:
         - task: PowerShell@2
           inputs:
