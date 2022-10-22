@@ -14,17 +14,6 @@ parameters:
       - stage: production
         displayName: ProductionStage
 
-
-trigger:
-  branches:
-    include:
-      - main  
-  paths:
-    exclude:
-      - 'HttpFunction/**'
-      - 'AzureResourceGroup/**'
-      - 'azure-pipelines-httpfunction.yml'
-
 variables:
   # Azure Resource Manager connection created during pipeline creation
   azureSubscription: 'AzureDefault'
@@ -39,6 +28,18 @@ variables:
   appName: 'WebApp'
 
   webAppName: 'MchTestAppProduction'
+
+trigger:
+  branches:
+    include:
+      - main  
+  paths:
+    exclude:
+      - 'HttpFunction/**'
+      - 'AzureResourceGroup/**'
+      - 'azure-pipelines-httpfunction.yml'
+
+
 stages:
 - ${{each stage in parameters.stages}}:
   - stage: ${{ stage.stage }} 
