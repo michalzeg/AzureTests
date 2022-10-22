@@ -7,17 +7,18 @@ parameters:
   - name: stages
     type: object
     default:
-      - stage: development
-        displayName: DevelopmentStage
-      - stage: test
-        displayName: TestStage
-      - stage: production
-        displayName: ProductionStage
+      - name: Development
+        displayName: 
+        variables:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+        
+
+
 
 variables:
   # Azure Resource Manager connection created during pipeline creation
   azureSubscription: 'AzureDefault'
-
 
   # Agent VM image name
   vmImageName: 'windows-latest'
@@ -25,8 +26,10 @@ variables:
   # Working Directory
   workingDirectory: '$(System.DefaultWorkingDirectory)/WebApp'
 
+  # 
   appName: 'WebApp'
 
+  # App Service name in Azure
   webAppName: 'MchTestAppProduction'
 
 trigger:
@@ -42,13 +45,11 @@ trigger:
 
 stages:
 - ${{each stage in parameters.stages}}:
-  - stage: ${{ stage.stage }} 
+  - stage: ${{ stage.name }} 
     displayName: ${{ stage.displayName}}
-    variables:
-      ASPNETCORE_ENVIRONMENT: ${{stage.stage}}
     jobs:
     - job: 
-      displayName: ${{stage.stage}}
+      displayName: ${{stage.displayName}}
       pool:
         vmImage: $(vmImageName)
       steps:
