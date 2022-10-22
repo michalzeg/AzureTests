@@ -18,7 +18,7 @@ variables:
   azureSubscription: 'AzureDefault'
 
   # Function app name
-  functionAppName: 'AzureTestFuncT1'
+  functionAppName: 'MichHttpFunProduction'
 
   # Agent VM image name
   vmImageName: 'windows-latest'
@@ -81,5 +81,5 @@ stages:
               appType: 'functionApp'
               appName: '$(functionAppName)'
               package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
-              appSettings: '-FUN__VALUE AzureDevOpsValue'
+              appSettings: '-FUN__VALUE AzureDevOpsValue -ASPNETCORE_ENVIRONMENT Production'
               deploymentMethod: 'auto'
