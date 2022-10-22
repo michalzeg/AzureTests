@@ -64,7 +64,8 @@ stages:
         - task: PowerShell@2
           inputs:
             targetType: 'inline'
-            script: 'echo $env:${{ var.name }}'
+            script: 'Write-Host "$env:${{ var.name }}"'
+        
             
             
 
