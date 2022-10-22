@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{FBD12CF5-3459-411E-83EE-E8597A79E73B}"
 EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "AzureResourceGroup", "AzureResourceGroup\AzureResourceGroup.deployproj", "{C02E9028-CC0A-4B6E-B73B-C5449ABD4EFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{FBD12CF5-3459-411E-83EE-E8597A79E73B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBD12CF5-3459-411E-83EE-E8597A79E73B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBD12CF5-3459-411E-83EE-E8597A79E73B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C02E9028-CC0A-4B6E-B73B-C5449ABD4EFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C02E9028-CC0A-4B6E-B73B-C5449ABD4EFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C02E9028-CC0A-4B6E-B73B-C5449ABD4EFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C02E9028-CC0A-4B6E-B73B-C5449ABD4EFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
