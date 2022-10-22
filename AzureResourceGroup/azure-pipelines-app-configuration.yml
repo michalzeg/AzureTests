@@ -41,5 +41,5 @@ stages:
           resourceGroupName: 'Test'
           location: 'East US'
           templateLocation: 'URL of the file'
-          csmFileLink: '/AppConfiguration/azuredeploy.json'
+          csmFileLink: 'AzureResourceGroup/AppConfiguration/azuredeploy.json'
           deploymentMode: 'Validation'
