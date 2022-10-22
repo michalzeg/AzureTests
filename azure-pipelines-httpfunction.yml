@@ -10,6 +10,7 @@ trigger:
   paths:
     exclude:
       - 'WebApp/**'
+      - 'AzureResourceGroup/**'
       - 'azure-pipelines-webapp.yml'
 
 variables:
