@@ -3,6 +3,15 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/languages/dotnet-core
 
+parameters:
+  - name: stages
+    type: object
+    default:
+      - stage: development
+      - stage: test
+      - stage: production
+
+
 trigger:
   branches:
     include:
@@ -28,6 +37,10 @@ variables:
 
   webAppName: 'MchTestAppProduction'
 stages:
+- ${{each stage in parameters.stages}}:
+  - stage: ${{ stage.stage }} 
+    displayName: ${{ stage.displayName}}
+
 - stage: Build
   displayName: Build stage
 
