@@ -44,7 +44,7 @@ stages:
   - stage: ${{ stage.stage }} 
     displayName: ${{ stage.displayName}}
     variables:
-      ASPNETCORE_ENVIRONMENT: {{stage.stage}}
+      ASPNETCORE_ENVIRONMENT: ${{stage.stage}}
     jobs:
     - job: 
       pool:
