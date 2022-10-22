@@ -26,6 +26,7 @@
     <Content Include="AppConfiguration\azuredeploy.json" />
     <Content Include="azuredeploy.json" />
     <Content Include="azuredeploy.parameters.json" />
+    <None Include="azure-pipelines-app-configuration.yml" />
     <None Include="Deployment.targets">
       <Visible>False</Visible>
     </None>
