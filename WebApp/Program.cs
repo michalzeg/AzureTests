@@ -11,7 +11,7 @@ builder.Configuration.AddAzureAppConfiguration(conf =>
 
     var baseConf = builder.Configuration;
     var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-    var azureConf = baseConf.GetConnectionString("AZURE_APP_CONFIGURATION");
+    var azureConf = baseConf.GetValue<string>("AZURE_APPCONFIGURATION_CONNECTIONSTRING");
     conf.Connect(azureConf);
     conf.Select("test", env);
     
