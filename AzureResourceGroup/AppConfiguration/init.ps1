@@ -1,0 +1,2 @@
+az appconfig kv set -n $(configName) --key test --label Production --value "Value from azure app settings Production" --yes
+az appconfig kv set -n $(configName) --key test --label Production --value "Value from azure app settings Production" --yes

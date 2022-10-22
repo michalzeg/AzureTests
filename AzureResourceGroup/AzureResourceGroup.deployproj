@@ -24,6 +24,7 @@
   <!-- vertag<:>end -->
   <ItemGroup>
     <Content Include="AppConfiguration\azuredeploy.json" />
+    <Content Include="AppConfiguration\init.ps1" />
     <Content Include="azuredeploy.json" />
     <Content Include="azuredeploy.parameters.json" />
     <None Include="azure-pipelines-app-configuration.yml" />
