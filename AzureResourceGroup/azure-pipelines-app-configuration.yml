@@ -40,6 +40,6 @@ stages:
           action: 'Create Or Update Resource Group'
           resourceGroupName: 'Test'
           location: 'East US'
-          templateLocation: 'URL of the file'
-          csmFileLink: 'AzureResourceGroup/AppConfiguration/azuredeploy.json'
+          templateLocation: 'Linked artifact'
+          csmFile: 'AzureResourceGroup/AppConfiguration/azuredeploy.json'
           deploymentMode: 'Validation'
