@@ -12,6 +12,8 @@ parameters:
         variables:
             - name: ASPNETCORE_ENVIRONMENT
               value: Development
+            - name: Some_Value
+              value: 'aaaa'
         
 
 
