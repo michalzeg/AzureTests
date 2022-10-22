@@ -17,6 +17,9 @@
       "sku": {
         "name": "free"
       },
+      "tags": {
+        "Type": "AppConfig"
+      },
       "properties": {
         "encryption": {},
         "disableLocalAuth": false,
