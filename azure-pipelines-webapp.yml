@@ -10,10 +10,10 @@ parameters:
       - name: Development
         displayName: 
         variables:
-            - name: ASPNETCORE_ENVIRONMENT
-              value: Development
-            - name: Some_Value
-              value: 'aaaa'
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Development
+          - name: Some_Value
+            value: 'aaaa'
         
 
 
