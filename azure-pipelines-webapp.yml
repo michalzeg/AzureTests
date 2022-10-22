@@ -119,10 +119,13 @@ stages:
     environment: 'development'
     pool:
       vmImage: $(vmImageName)
+    variables:
+      - name: test
+        value: 'gggg'
     strategy:
       runOnce:
         deploy:
-
+          
           steps:
           - task: Bash@3
             inputs:
