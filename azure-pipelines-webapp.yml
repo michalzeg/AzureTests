@@ -59,9 +59,7 @@ stages:
       - task: PowerShell@2
         inputs:
           targetType: 'inline'
-          script: |
-            '${{each var in stage.variables}}:
-            Write-Host ${{var.name}} ${{var.value}}'
+          script: 'Write-Host ${{var.name}} ${{var.value}}'
 
 
             
