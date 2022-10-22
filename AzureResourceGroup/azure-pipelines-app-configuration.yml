@@ -42,4 +42,4 @@ stages:
           location: 'East US'
           templateLocation: 'Linked artifact'
           csmFile: 'AzureResourceGroup/AppConfiguration/azuredeploy.json'
-          deploymentMode: 'Validation'
+          deploymentMode: 'Incremental'
