@@ -49,7 +49,7 @@ stages:
 - ${{each stage in parameters.stages}}:
   - stage: ${{ stage.name }} 
     displayName: ${{ stage.displayName}}
-    ${{each var in stage.variables}}
+    ${{each var in stage.variables}}:
     variables:
       - name: aaa
         value: 'bbbb'
