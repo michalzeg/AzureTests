@@ -8,8 +8,11 @@ parameters:
     type: object
     default:
       - stage: development
+        displayName: DevelopmentStage
       - stage: test
+        displayName: TestStage
       - stage: production
+        displayName: ProductionStage
 
 
 trigger:
@@ -40,7 +43,17 @@ stages:
 - ${{each stage in parameters.stages}}:
   - stage: ${{ stage.stage }} 
     displayName: ${{ stage.displayName}}
+    jobs:
+    - job: 
+      steps:
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: Write-Host "Hello World"
+            
+            
 
+    
 - stage: Build
   displayName: Build stage
 
