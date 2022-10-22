@@ -18,6 +18,7 @@ variables:
   # Azure Resource Manager connection created during pipeline creation
   azureSubscription: 'AzureDefault'
 
+  configName: mchtestappconfiguration
 
   # Agent VM image name
   vmImageName: 'windows-latest'
@@ -42,4 +43,5 @@ stages:
           location: 'East US'
           templateLocation: 'Linked artifact'
           csmFile: 'AzureResourceGroup/AppConfiguration/azuredeploy.json'
+          overrideParameters: '-configurationStores_mchtestappconfig_name $(configName)'
           deploymentMode: 'Incremental'
