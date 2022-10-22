@@ -68,10 +68,7 @@ stages:
         - task: PowerShell@2
           inputs:
             targetType: 'inline'
-            script: |
-              # Write your PowerShell commands here.
-              
-              Write-Host "Hello World"
+            script: Write-Host ${{var.name}}
         
             
             
@@ -138,6 +135,7 @@ stages:
                 # Write your commands here
                 
                 echo $(Build.BuildId)
+
           - task: AzureRmWebAppDeployment@4
             inputs:
               ConnectionType: 'AzureRM'
