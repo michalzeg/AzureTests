@@ -34,6 +34,7 @@ stages:
 
     steps:
       - task: AzureResourceManagerTemplateDeployment@3
+        displayName: Rebuild App Configuration
         inputs:
           deploymentScope: 'Resource Group'
           azureResourceManagerConnection: '$(azureSubscription)'
@@ -45,3 +46,10 @@ stages:
           csmFile: 'AzureResourceGroup/AppConfiguration/azuredeploy.json'
           overrideParameters: '-configurationStores_mchtestappconfig_name $(configName)'
           deploymentMode: 'Incremental'
+      - task: AzureCLI@2
+        displayName: Initialize values
+        inputs:
+          azureSubscription: 'AzureDefault'
+          scriptType: 'ps'
+          scriptLocation: 'scriptPath'
+          scriptPath: 'AzureResourceGroup\AppConfiguration\init.ps1'
