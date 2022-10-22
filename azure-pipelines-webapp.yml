@@ -65,7 +65,13 @@ stages:
           inputs:
             targetType: 'inline'
             script: 'Write-Host $env:${{ var.name }}'
-        
+        - task: PowerShell@2
+          inputs:
+            targetType: 'inline'
+            script: |
+              # Write your PowerShell commands here.
+              
+              Write-Host "Hello World"
             
             
 
