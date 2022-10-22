@@ -35,11 +35,11 @@ stages:
       - task: AzureResourceManagerTemplateDeployment@3
         inputs:
           deploymentScope: 'Resource Group'
-          azureResourceManagerConnection: '$(azureubscription)'
+          azureResourceManagerConnection: '$(azureSubscription)'
           subscriptionId: '343eca92-cca8-4235-8e1e-2a732b172330'
           action: 'Create Or Update Resource Group'
           resourceGroupName: 'Test'
           location: 'East US'
-          templateLocation: 'URL of the file'
-          csmFileLink: '/AppConfiguration/azuredeploy.json'
-          deploymentMode: 'Validation'
+          templateLocation: 'Linked artifact'
+          csmFile: 'AzureResourceGroup/AppConfiguration/azuredeploy.json'
+          deploymentMode: 'Incremental'
