@@ -47,6 +47,7 @@ stages:
       ASPNETCORE_ENVIRONMENT: ${{stage.stage}}
     jobs:
     - job: 
+      displayName: ${{stage.stage}}
       pool:
         vmImage: $(vmImageName)
       steps:
