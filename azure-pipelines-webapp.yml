@@ -96,5 +96,5 @@ stages:
               appType: 'webApp'
               WebAppName: '$(webAppName)'
               packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
-              AppSettings: '-SOMEDATA__VALUE azureTEstValue'
+              AppSettings: '-SOMEDATA__VALUE azureTEstValue -ASPNETCORE_ENVIRONMENT Production'
               
