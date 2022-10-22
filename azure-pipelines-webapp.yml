@@ -26,7 +26,7 @@ variables:
 
   appName: 'WebApp'
 
-  webAppName: 'MchTestApp'
+  webAppName: 'MchTestAppProduction'
 stages:
 - stage: Build
   displayName: Build stage
