@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "configurationStores_mchtestappconfig_name": {
+      "defaultValue": "mchtestappconfig",
+      "type": "String"
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.AppConfiguration/configurationStores",
+      "apiVersion": "2022-05-01",
+      "name": "[parameters('configurationStores_mchtestappconfig_name')]",
+      "location": "eastus",
+      "sku": {
+        "name": "free"
+      },
+      "properties": {
+        "encryption": {},
+        "disableLocalAuth": false,
+        "softDeleteRetentionInDays": 0,
+        "enablePurgeProtection": false
+      }
+    }
+  ]
+}
