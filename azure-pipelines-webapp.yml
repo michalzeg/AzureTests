@@ -62,14 +62,14 @@ stages:
       
       steps:
       - ${{each var in stage.variables}}:
-        - bash: echo "##vso[task.setvariable variable=${{var.name}}]${{var.value}}"
-        - bash: echo $(${{ var.name }})
+        # - bash: echo "##vso[task.setvariable variable=${{var.name}}]${{var.value}}"
+        # - bash: echo $(${{ var.name }})
         - task: Bash@3
           displayName: 'Converting ${{var.name}} to env variable'
           inputs:
             targetType: 'inline'
             script: |
-              echo $(${{ var.name }});
+              echo "##vso[task.setvariable variable=${{var.name}}]${{var.value}}";
               echo $(${{ var.name }});
 
 
