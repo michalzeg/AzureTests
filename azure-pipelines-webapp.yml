@@ -101,13 +101,13 @@ stages:
           deploy:
             steps:
             - ${{each var in stage.variables}}:
-            - task: Bash@3
-              displayName: 'Converting ${{var.name}} to env variable'
-              inputs:
-                targetType: 'inline'
-                script: |
-                  echo "##vso[task.setvariable variable=${{var.name}}]${{var.value}}";
-                  echo $(${{ var.name }});
+              - task: Bash@3
+                displayName: 'Converting ${{var.name}} to env variable'
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    echo "##vso[task.setvariable variable=${{var.name}}]${{var.value}}";
+                    echo $(${{ var.name }});
             - task: AzureRmWebAppDeployment@4
               inputs:
                 ConnectionType: 'AzureRM'
