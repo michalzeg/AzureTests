@@ -80,7 +80,7 @@ stages:
         publishLocation: 'Container'
 
 - ${{each stage in parameters.stages}}:
-  - stage: ${{ stage.name }} 
+  - stage: 'T ${{ stage.name }}'' 
     displayName: ${{ stage.displayName}}
     jobs:
     - job: 
