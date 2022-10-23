@@ -94,8 +94,13 @@ stages:
           inputs:
             targetType: 'inline'
             script: |
-              echo "##vso[task.setvariable variable=${{var.name}}]${{var.value}}";
-              echo $(${{ var.name }});
+              echo "##vso[task.setvariable variable=${{var.name}}]${{var.value}}"
+        - task: Bash@3
+          displayName: 'Displaying ${{var.name}} to env variable'
+          inputs:
+            targetType: 'inline'
+            script: |
+              echo $(${{ var.name }})
 
 - ${{each stage in parameters.stages}}:
   - stage: ${{ stage.name }} 
