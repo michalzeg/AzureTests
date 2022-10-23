@@ -12,10 +12,7 @@ parameters:
 
         variables:
           - name: ASPNETCORE_ENVIRONMENT
-            value: Development
-
-        
-
+            value: Production
 
 
 variables:
