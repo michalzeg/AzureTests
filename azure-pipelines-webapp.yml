@@ -9,7 +9,6 @@ parameters:
     default:
       - name: Production
         displayName: Production
-
         variables:
           - name: ASPNETCORE_ENVIRONMENT
             value: Production
