@@ -7,15 +7,13 @@ parameters:
   - name: stages
     type: object
     default:
-      - name: Development
-        displayName: Development
+      - name: Production
+        displayName: Production
+
         variables:
           - name: ASPNETCORE_ENVIRONMENT
             value: Development
-          - name: Some_Value
-            value: 'aaaa'
-          - name: Value
-            value: 'value from value'
+
         
 
 
@@ -48,30 +46,7 @@ trigger:
 
 
 stages:
-- ${{each stage in parameters.stages}}:
-  - stage: ${{ stage.name }} 
-    displayName: ${{ stage.displayName}}
-    variables:
-      - name: aaa
-        value: 'bbbb'
-    jobs:
-    - job: 
-      displayName: ${{ stage.displayName }}
-      pool:
-        vmImage: $(vmImageName)
-      
-      steps:
-      - ${{each var in stage.variables}}:
-        - task: Bash@3
-          displayName: 'Converting ${{var.name}} to env variable'
-          inputs:
-            targetType: 'inline'
-            script: |
-              echo "##vso[task.setvariable variable=${{var.name}}]${{var.value}}";
-              echo $(${{ var.name }});
 
-
-    
 - stage: Build
   displayName: Build stage
 
@@ -110,27 +85,68 @@ stages:
 
     
 
-- stage: Deploy
-  displayName: Deploy stage
-  dependsOn: Build
-  condition: succeeded()
+- ${{each stage in parameters.stages}}:
+  - stage: ${{ stage.name }} 
+    displayName: 'Deploy ${{ stage.displayName}}'
+    dependsOn: Build
+    condition: succeeded()
+    jobs:
+    - deployment: Deploy
+      displayName: 'Deploy ${{stage.name}}'
+      environment: 'development'
+      pool:
+        vmImage: $(vmImageName)
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - task: AzureRmWebAppDeployment@4
+              inputs:
+                ConnectionType: 'AzureRM'
+                azureSubscription: '$(azureSubscription)'
+                appType: 'webApp'
+                WebAppName: '$(webAppName)'
+                packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+                AppSettings: '-ASPNETCORE_ENVIRONMENT ${{stage.name}} -BuildId $(Build.BuildId)'
+    # - job: 
+    #   displayName: ${{ stage.displayName }}
+    #   pool:
+    #     vmImage: $(vmImageName)
+    #   steps:
+    #   - ${{each var in stage.variables}}:
+    #     - task: Bash@3
+    #       displayName: 'Converting ${{var.name}} to env variable'
+    #       inputs:
+    #         targetType: 'inline'
+    #         script: |
+    #           echo "##vso[task.setvariable variable=${{var.name}}]${{var.value}}";
+    #           echo $(${{ var.name }});
 
-  jobs:
-  - deployment: Deploy
-    displayName: Deploy
-    environment: 'development'
-    pool:
-      vmImage: $(vmImageName)
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: AzureRmWebAppDeployment@4
-            inputs:
-              ConnectionType: 'AzureRM'
-              azureSubscription: '$(azureSubscription)'
-              appType: 'webApp'
-              WebAppName: '$(webAppName)'
-              packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
-              AppSettings: '-SOMEDATA__VALUE azureTEstValue -ASPNETCORE_ENVIRONMENT Production -BuildId $(Build.BuildId)'
+
+    
+
+
+# - stage: Deploy
+#   displayName: Deploy stage
+#   dependsOn: Build
+#   condition: succeeded()
+
+#   jobs:
+#   - deployment: Deploy
+#     displayName: Deploy
+#     environment: 'development'
+#     pool:
+#       vmImage: $(vmImageName)
+#     strategy:
+#       runOnce:
+#         deploy:
+#           steps:
+#           - task: AzureRmWebAppDeployment@4
+#             inputs:
+#               ConnectionType: 'AzureRM'
+#               azureSubscription: '$(azureSubscription)'
+#               appType: 'webApp'
+#               WebAppName: '$(webAppName)'
+#               packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+#               AppSettings: '-ASPNETCORE_ENVIRONMENT Production -BuildId $(Build.BuildId)'
               
