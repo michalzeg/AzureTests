@@ -64,23 +64,14 @@ stages:
       - ${{each var in stage.variables}}:
         - bash: echo "##vso[task.setvariable variable=${{var.name}}]${{var.value}}"
         - bash: echo $(${{ var.name }})
+        - task: Bash@3
+          displayName: 'Converting ${{var.name}} to env variable'
+          inputs:
+            targetType: 'inline'
+            script: |
+              echo $(${{ var.name }});
+              echo $(${{ var.name }});
 
-      - bash: echo "##vso[task.setvariable variable=Value]test"
-      - task: Bash@3
-        inputs:
-          targetType: 'inline'
-          script: |
-            # Write your commands here
-            
-            echo $(Value)
-      - task: PowerShell@2
-        inputs:
-          targetType: 'inline'
-          script: 'Write-Host $(Value)'
-
-
-            
-            
 
     
 - stage: Build
