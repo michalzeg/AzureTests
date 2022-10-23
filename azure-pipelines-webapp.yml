@@ -61,6 +61,10 @@ stages:
         vmImage: $(vmImageName)
       
       steps:
+      - ${{each var in stage.variables}}:
+        - bash: echo "##vso[task.setvariable variable=${{var.name}}]${{var.value}}"
+        - bash: echo $(${{ var.name }})
+
       - bash: echo "##vso[task.setvariable variable=Value]test"
       - task: Bash@3
         inputs:
