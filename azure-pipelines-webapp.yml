@@ -79,7 +79,23 @@ stages:
         ArtifactName: 'drop'
         publishLocation: 'Container'
 
-    
+- ${{each stage in parameters.stages}}:
+  - stage: ${{ stage.name }} 
+    displayName: ${{ stage.displayName}}
+    jobs:
+    - job: 
+      displayName: ${{ stage.displayName }}
+      pool:
+        vmImage: $(vmImageName)
+      steps:
+      - ${{each var in stage.variables}}:
+        - task: Bash@3
+          displayName: 'Converting ${{var.name}} to env variable'
+          inputs:
+            targetType: 'inline'
+            script: |
+              echo "##vso[task.setvariable variable=${{var.name}}]${{var.value}}";
+              echo $(${{ var.name }});
 
 - ${{each stage in parameters.stages}}:
   - stage: ${{ stage.name }} 
