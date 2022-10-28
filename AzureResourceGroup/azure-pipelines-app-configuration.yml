@@ -53,3 +53,33 @@ stages:
           scriptType: 'ps'
           scriptLocation: 'scriptPath'
           scriptPath: 'AzureResourceGroup\AppConfiguration\init.ps1'
+- stage: Test1
+  displayName: Test1
+  dependsOn: Build
+  jobs:
+  - job: Script
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+      - task: Bash@3
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Write your commands here
+            
+            echo 'Hello world'
+- stage: Test2
+  displayName: Test2
+  dependsOn: Build
+  jobs:
+  - job: Script
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+      - task: Bash@3
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Write your commands here
+            
+            echo 'Hello world2'
